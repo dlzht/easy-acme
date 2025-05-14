@@ -1,2 +1,2 @@
-mod dns;
-mod http;
+pub mod dns;
+pub mod http;

@@ -1,4 +1,4 @@
-mod ca;
+mod authority;
 pub mod challenge;
 mod errors;
 mod util;

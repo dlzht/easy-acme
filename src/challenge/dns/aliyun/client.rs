@@ -1,10 +1,10 @@
 use hmac::digest::Digest;
 use http::{
-  header::{AUTHORIZATION, HOST}, HeaderMap,
-  HeaderValue,
+  HeaderMap, HeaderValue,
+  header::{AUTHORIZATION, HOST},
 };
-use jiff::{tz::TimeZone, Zoned};
-use rand::{prelude::SmallRng, RngCore, SeedableRng};
+use jiff::{Zoned, tz::TimeZone};
+use rand::{RngCore, SeedableRng, prelude::SmallRng};
 use serde::Serialize;
 use sha2::Sha256;
 use snafu::ResultExt;
@@ -13,11 +13,11 @@ use crate::{
   challenge::dns::aliyun::{
     option::AliyunClientOption,
     request::{AliyunCreateRecordReq, AliyunDeleteRecordReq},
+    response::AliyunRes,
   },
   errors::{ReqwestClientSnafu, Result, SerializeUrlSnafu},
   util::{sha2_hmac, str_to_header_value},
 };
-use crate::challenge::dns::aliyun::response::AliyunRes;
 
 /// Client for aliyun DNS api
 #[derive(Debug)]

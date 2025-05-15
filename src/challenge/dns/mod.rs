@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 pub mod aliyun;
+pub mod cloudflare;
 
 // pub trait DnsChallengeClient {
 //   async fn create_record();

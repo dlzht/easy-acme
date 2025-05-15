@@ -1,10 +1,10 @@
 use serde::Deserialize;
 
-use crate::errors::PlainTextSnafu;
-use crate::errors::Result;
+use crate::errors::{PlainTextSnafu, Result};
 
 #[derive(Debug, Deserialize)]
 pub(crate) struct AliyunRes {
+  #[allow(dead_code)]
   #[serde(rename = "RequestId")]
   request_id: String,
 

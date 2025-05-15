@@ -1,10 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-mod aliyun;
-pub use aliyun::{
-  AliyunClient, AliyunClientOption, AliyunCreateRecordReq,
-  AliyunDeleteRecordReq
-};
+pub mod aliyun;
 
 // pub trait DnsChallengeClient {
 //   async fn create_record();

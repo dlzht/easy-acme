@@ -19,6 +19,7 @@ use crate::{
 };
 use crate::challenge::dns::aliyun::response::AliyunRes;
 
+/// Client for aliyun DNS api
 #[derive(Debug)]
 pub struct AliyunClient {
   access_key: String,

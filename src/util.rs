@@ -1,11 +1,11 @@
+use base64ct::Encoding;
 use hmac::{Hmac, Mac};
 use http::HeaderValue;
+use serde::Serialize;
 use sha2::Sha256;
 use snafu::ResultExt;
 
-use crate::errors::{
-  EnvironmentVarSnafu, InvalidHeader, InvalidHeaderSnafu, InvalidHmacKeySnafu, Result,
-};
+use crate::errors::{EnvironmentVarSnafu, InvalidHeader, InvalidHeaderSnafu, InvalidHmacKeySnafu, Result, SerializeJsonSnafu};
 
 pub fn str_to_header_value(value: impl AsRef<str>) -> Result<HeaderValue> {
   let value = value.as_ref();
@@ -20,6 +20,14 @@ pub fn sha2_hmac(key: impl AsRef<[u8]>, data: &[u8]) -> Result<Vec<u8>> {
   let mut hmac = HmacSha256::new_from_slice(key.as_ref()).context(InvalidHmacKeySnafu)?;
   hmac.update(data);
   Ok(hmac.finalize().into_bytes().to_vec())
+}
+
+pub fn json_serialize(data: &impl Serialize) -> Result<String> {
+  serde_json::to_string(data).context(SerializeJsonSnafu)
+}
+
+pub fn base64_url_str(data: impl AsRef<[u8]>) -> String {
+  base64ct::Base64Url::encode_string(data.as_ref())
 }
 
 /// __keys.len must > 0__

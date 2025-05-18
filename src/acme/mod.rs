@@ -1,3 +1,6 @@
+mod client;
+mod request;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]

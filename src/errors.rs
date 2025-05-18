@@ -1,5 +1,5 @@
 use std::fmt::{Display, Formatter};
-
+use p256::ecdsa::signature;
 use snafu::{Location, Snafu};
 
 pub type Result<T> = std::result::Result<T, Error>;
@@ -57,6 +57,14 @@ pub enum Error {
     #[snafu(implicit)]
     location: Location,
   },
+  
+  P256Signature {
+    #[snafu(source)]
+    source: signature::Error,
+
+    #[snafu(implicit)]
+    location: Location,
+  }
 }
 
 #[derive(Debug)]

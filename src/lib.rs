@@ -2,6 +2,7 @@ mod authority;
 pub mod challenge;
 mod errors;
 mod util;
+mod acme;
 
 pub fn add(left: u64, right: u64) -> u64 {
   left + right
